@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "benaiah": {
+      "type": "http",
+      "url": "https://benaiah.ai/mcp/claude",
+      "oauth": {
+        "authServerMetadataUrl": "https://benaiah.ai/.well-known/oauth-authorization-server/oauth/claude",
+        "scopes": "teammates.read tasks.read tasks.write"
+      }
+    }
+  }
+}

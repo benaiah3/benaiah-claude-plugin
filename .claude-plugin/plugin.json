@@ -1,0 +1,10 @@
+{
+  "name": "benaiah",
+  "version": "1.0.0",
+  "description": "Delegate text work to your Benaiah teammates and retrieve their saved results.",
+  "author": { "name": "Benaiah", "email": "ask@benaiah.ai", "url": "https://benaiah.ai" },
+  "homepage": "https://github.com/benaiah3/benaiah-claude-plugin",
+  "repository": "https://github.com/benaiah3/benaiah-claude-plugin",
+  "license": "MIT",
+  "keywords": ["teammates", "delegation", "drafting", "tasks"]
+}
