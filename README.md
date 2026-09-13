@@ -20,11 +20,13 @@ Examples:
 
 ## Requirements and account connection
 
-Use a Benaiah account with an existing teammate and sufficient Benaiah Credits for delegated work. Account creation is free; background intelligence uses pay-as-you-go Credits. See [Benaiah](https://benaiah.ai) for current availability and funding options.
+Use a Benaiah account with an existing teammate, an active Benaiah phone plan and available included intelligence allowance for delegated work. A Claude subscription does not replace the Benaiah plan. Adding money to Balance alone does not activate teammate work. See [Benaiah plans](https://benaiah.ai/plans) for current availability and pricing.
 
 The plugin connects to `https://benaiah.ai/mcp/claude` using OAuth with S256 PKCE. It requests `teammates.read`, `tasks.read` and `tasks.write`. Use Claude's connection flow to sign in to Benaiah, unlock the account if needed, review the displayed permissions and connect. Never paste a password, one-time code, bearer token or private API key into chat.
 
 For development, clone this repository and launch Claude Code with `claude --plugin-dir /absolute/path/to/benaiah-claude-plugin`. The skills are available as `/benaiah:teammates`, `/benaiah:delegate` and `/benaiah:task-status`. The remote server may request account linking when a protected tool is first called. Use `/mcp` to manage the connection.
+
+For Cowork, upload a ZIP of this repository through Customize → Plugins → Add plugin → Upload plugin. When connecting the included Benaiah server, choose **Sign in now** and **Use Claude's published identity (CIMD)**, then complete Benaiah's account connection. This is a manual installation while directory review is being prepared.
 
 ## Boundaries and data handling
 
@@ -43,7 +45,7 @@ Disconnect the server in Claude to remove it from that client. OAuth access toke
 | `list_teammates` | Read your available teammates |
 | `list_tasks` | Read your 12 most recent saved tasks |
 | `get_task` | Read one saved task |
-| `delegate_task` | Create one durable text task using Credits; retries reuse its idempotency key |
+| `delegate_task` | Create one durable text task using the linked account's included intelligence allowance; retries reuse its idempotency key |
 | `get_delegated_task` | Read the delegated task's status and result |
 | `cancel_delegated_task` | Request cancellation of delegated work |
 
@@ -52,6 +54,8 @@ All tools are scoped to the linked account. Read responses are bounded. Task res
 ## Validation
 
 Run `claude plugin validate --strict .` to check the package. The remote service has separate tests for OAuth, account isolation, task retries, cancellation and exclusion of calling capabilities. Package validation alone does not establish live client acceptance or directory approval.
+
+On 13 September 2026, authenticated teammate lookup and task cancellation passed in Claude Code, and the uploaded plugin connected and retrieved task status in Cowork. The live completion test remains pending: the linked Benaiah test account had no active phone plan, so its task did not reach model execution. The plugin has not been submitted to or approved for Anthropic's directory.
 
 ## License
 
