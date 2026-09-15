@@ -55,7 +55,7 @@ All tools are scoped to the linked account. Read responses are bounded. Task res
 
 Run `claude plugin validate --strict .` to check the package. The remote service has separate tests for OAuth, account isolation, task retries, cancellation and exclusion of calling capabilities. Package validation alone does not establish live client acceptance or directory approval.
 
-On 13 September 2026, authenticated teammate lookup and task cancellation passed in Claude Code, and the uploaded plugin connected and retrieved task status in Cowork. The live completion test remains pending: the linked Benaiah test account had no active phone plan, so its task did not reach model execution. The plugin has not been submitted to or approved for Anthropic's directory.
+On 15 September 2026, a fresh fictional drafting task completed through the production Benaiah service. Claude Code and the installed Cowork plugin both retrieved the same saved result from Verity. The founder test used an operator-issued, time-limited developer allowance; the customer plan requirement above still applies. Earlier checks covered authenticated teammate lookup and task cancellation. Directory review is being prepared; approval by Anthropic is not claimed.
 
 ## License
 
