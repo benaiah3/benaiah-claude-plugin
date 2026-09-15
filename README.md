@@ -2,7 +2,7 @@
 
 Give your Benaiah teammates text work to continue, then retrieve their saved results from Claude Code or Cowork.
 
-This plugin is being prepared for directory review. Publication or approval by Anthropic is not claimed.
+This plugin was submitted to Anthropic for Claude Code and Cowork directory review on 15 September 2026. Approval or directory publication is not yet claimed.
 
 ## What it does
 
@@ -26,7 +26,7 @@ The plugin connects to `https://benaiah.ai/mcp/claude` using OAuth with S256 PKC
 
 For development, clone this repository and launch Claude Code with `claude --plugin-dir /absolute/path/to/benaiah-claude-plugin`. The skills are available as `/benaiah:teammates`, `/benaiah:delegate` and `/benaiah:task-status`. The remote server may request account linking when a protected tool is first called. Use `/mcp` to manage the connection.
 
-For Cowork, upload a ZIP of this repository through Customize → Plugins → Add plugin → Upload plugin. When connecting the included Benaiah server, choose **Sign in now** and **Use Claude's published identity (CIMD)**, then complete Benaiah's account connection. This is a manual installation while directory review is being prepared.
+For Cowork, upload a ZIP of this repository through Customize → Plugins → Add plugin → Upload plugin. When connecting the included Benaiah server, choose **Sign in now** and **Use Claude's published identity (CIMD)**, then complete Benaiah's account connection. This is a manual installation while directory review is pending.
 
 ## Boundaries and data handling
 
@@ -55,7 +55,7 @@ All tools are scoped to the linked account. Read responses are bounded. Task res
 
 Run `claude plugin validate --strict .` to check the package. The remote service has separate tests for OAuth, account isolation, task retries, cancellation and exclusion of calling capabilities. Package validation alone does not establish live client acceptance or directory approval.
 
-On 15 September 2026, a fresh fictional drafting task completed through the production Benaiah service. Claude Code and the installed Cowork plugin both retrieved the same saved result from Verity. The founder test used an operator-issued, time-limited developer allowance; the customer plan requirement above still applies. Earlier checks covered authenticated teammate lookup and task cancellation. Directory review is being prepared; approval by Anthropic is not claimed.
+On 15 September 2026, a fresh fictional drafting task completed through the production Benaiah service. Claude Code and the installed Cowork plugin both retrieved the same saved result from Verity. The founder test used an operator-issued, time-limited developer allowance; the customer plan requirement above still applies. Earlier checks covered authenticated teammate lookup and task cancellation. The plugin was submitted for directory review on 15 September 2026; approval by Anthropic is not claimed.
 
 ## License
 
