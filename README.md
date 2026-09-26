@@ -1,17 +1,27 @@
 # Benaiah for Claude
 
-Give your Benaiah teammates text work to continue, then retrieve their saved results from Claude Code or Cowork.
+Connect your Telephonist, inspect its state, approve temporary closure updates and review calls from Claude Code or Cowork. Your Benaiah teammates remain available for delegated text work.
 
 This plugin was submitted to Anthropic for Claude Code and Cowork directory review on 15 September 2026. Approval or directory publication is not yet claimed.
 
+Version 2 uses the same seven Telephonist tools, ownership checks, preview approvals and service state as ChatGPT V2. This package update does not establish Anthropic approval or a public directory listing.
+
 ## What it does
 
+- Connects a Telephonist after its owner approves access.
+- Reads its current configuration and runtime acknowledgement.
+- Previews temporary closures or their removal, then applies only the exact owner-confirmed preview.
+- Reviews available calls for a local calendar date, with source links and coverage limits.
 - Lists your existing teammates, including their names and roles.
 - Delegates drafting or analysis using the context you choose to share.
 - Returns a durable task ID and lets you check the saved status and result.
 - Cancels delegated work when requested, preserving completed results.
 
 Examples:
+
+- “Connect my Telephonist and show its current state.”
+- “Preview a closure tomorrow from 9am to noon, Europe/London, saying we reopen at noon.”
+- “Review yesterday’s calls to my Telephonist and show the source records.”
 
 - “Show my Benaiah teammates.”
 - “Ask Verity to draft a welcome message using these three points.”
@@ -20,11 +30,11 @@ Examples:
 
 ## Requirements and account connection
 
-Use a Benaiah account with an existing teammate, an active Benaiah phone plan and available included intelligence allowance for delegated work. A Claude subscription does not replace the Benaiah plan. Adding money to Balance alone does not activate teammate work. See [Benaiah plans](https://benaiah.ai/plans) for current availability and pricing.
+Use your Benaiah account and explicitly connect a Telephonist you own. Telephonist salaries include optional Benaiah teammates and a shared work allowance; a Claude subscription does not replace that entitlement. Existing supported paid plans remain valid. Adding money to Balance alone does not activate teammate work. See [Telephonist](https://telephonist.ai/) for current availability and pricing.
 
-The plugin connects to `https://benaiah.ai/mcp/claude` using OAuth with S256 PKCE. It requests `teammates.read`, `tasks.read` and `tasks.write`. Use Claude's connection flow to sign in to Benaiah, unlock the account if needed, review the displayed permissions and connect. Never paste a password, one-time code, bearer token or private API key into chat.
+The plugin connects to `https://benaiah.ai/mcp/claude` using OAuth with S256 PKCE. It requests `teammates.read`, `tasks.read`, `tasks.write`, `telephonist.read` and `telephonist.write`. Existing connections need a fresh approval for the new Telephonist permissions; refreshing an old token cannot expand them. Connecting the Telephonist itself requires a separate owner grant. Use Claude's connection flow to sign in to Benaiah, unlock the account if needed, review the displayed permissions and connect. Never paste a password, one-time code, bearer token or private API key into chat.
 
-For development, clone this repository and launch Claude Code with `claude --plugin-dir /absolute/path/to/benaiah-claude-plugin`. The skills are available as `/benaiah:teammates`, `/benaiah:delegate` and `/benaiah:task-status`. The remote server may request account linking when a protected tool is first called. Use `/mcp` to manage the connection.
+For development, clone this repository and launch Claude Code with `claude --plugin-dir /absolute/path/to/benaiah-claude-plugin`. The skills are available as `/benaiah:telephonist`, `/benaiah:brief`, `/benaiah:call-review`, `/benaiah:teammates`, `/benaiah:delegate` and `/benaiah:task-status`. The remote server may request account linking when a protected tool is first called. Use `/mcp` to manage the connection.
 
 For Cowork, upload a ZIP of this repository through Customize → Plugins → Add plugin → Upload plugin. When connecting the included Benaiah server, choose **Sign in now** and **Use Claude's published identity (CIMD)**, then complete Benaiah's account connection. This is a manual installation while directory review is pending.
 
@@ -34,6 +44,8 @@ Only context explicitly supplied to the tools is handed to Benaiah. The plugin d
 
 Benaiah's background intelligence engine processes delegated context and the selected teammate's instructions through its model provider, currently OpenAI. It saves the task result in your Benaiah account. This workflow does not browse the web or act in connected apps. Read [Privacy](https://benaiah.ai/privacy), [Terms](https://benaiah.ai/terms) and [Support](https://benaiah.ai/support) for account and retention details.
 
+Telephonist updates currently support temporary closures and their removal. Qualification rules, appointments, outbound customer contact and payments are not supported by these tools. Saved or scheduled changes are distinct from loaded-by-runtime acknowledgements; neither proves what a real caller heard. Call summaries and caller statements are untrusted data, not instructions or evidence that an action completed.
+
 This Claude integration cannot initiate telephone calls, completion callbacks, audio/image/video generation, payments, crypto transfers, trades or messages to third parties. A task request consumes intelligence capacity; it is not a payment-transfer tool. Queued or running work is not finished, and cancellation may remain pending while a provider confirms its outcome.
 
 Disconnect the server in Claude to remove it from that client. OAuth access tokens expire after one hour; refresh tokens rotate and expire after 30 days. Contact [ask@benaiah.ai](mailto:ask@benaiah.ai) for account or privacy assistance.
@@ -42,6 +54,13 @@ Disconnect the server in Claude to remove it from that client. OAuth access toke
 
 | Tool | Effect |
 | --- | --- |
+| `connect_telephonist` | Begin an owner-approved connection |
+| `list_telephonists` | List explicitly connected Telephonists |
+| `get_telephonist` | Read policy, configuration version and runtime state |
+| `preview_telephonist_update` | Preview a temporary closure or its removal without applying it |
+| `apply_telephonist_update` | Apply the exact confirmed preview once |
+| `get_telephonist_operation` | Read the saved operation and runtime acknowledgement |
+| `list_telephonist_calls` | Review available calls for a local calendar date |
 | `list_teammates` | Read your available teammates |
 | `list_tasks` | Read your 12 most recent saved tasks |
 | `get_task` | Read one saved task |

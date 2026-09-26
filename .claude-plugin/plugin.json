@@ -1,11 +1,22 @@
 {
   "name": "benaiah",
-  "version": "1.0.2",
-  "description": "Delegate text work to your Benaiah teammates and retrieve their saved results.",
-  "author": { "name": "Benaiah", "email": "ask@benaiah.ai", "url": "https://benaiah.ai" },
+  "version": "2.0.0",
+  "description": "Connect your Telephonist, approve temporary closure updates and review calls, alongside your Benaiah teammates.",
+  "author": {
+    "name": "Benaiah",
+    "email": "ask@benaiah.ai",
+    "url": "https://benaiah.ai"
+  },
   "homepage": "https://github.com/benaiah3/benaiah-claude-plugin",
   "repository": "https://github.com/benaiah3/benaiah-claude-plugin",
   "license": "MIT",
   "icon": "./assets/benaiah-icon-light.png",
-  "keywords": ["teammates", "delegation", "drafting", "tasks"]
+  "keywords": [
+    "telephonist",
+    "teammates",
+    "briefing",
+    "calls",
+    "tasks"
+  ],
+  "privacyPolicyUrl": "https://benaiah.ai/privacy"
 }
