@@ -1,7 +1,7 @@
 {
   "name": "benaiah",
-  "version": "2.0.0",
-  "description": "Connect your Telephonist, approve temporary closure updates and review calls, alongside your Benaiah teammates.",
+  "version": "2.1.0",
+  "description": "Open the Telephonist call panel in Claude to connect your calling account, prepare drafts and read results, alongside Telephonist management and your Benaiah teammates.",
   "author": {
     "name": "Benaiah",
     "email": "ask@benaiah.ai",

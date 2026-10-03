@@ -36,7 +36,7 @@ The plugin connects to `https://benaiah.ai/mcp/claude` using OAuth with S256 PKC
 
 For development, clone this repository and launch Claude Code with `claude --plugin-dir /absolute/path/to/benaiah-claude-plugin`. The skills are available as `/benaiah:telephonist`, `/benaiah:brief`, `/benaiah:call-review`, `/benaiah:teammates`, `/benaiah:delegate` and `/benaiah:task-status`. The remote server may request account linking when a protected tool is first called. Use `/mcp` to manage the connection.
 
-For Cowork, upload a ZIP of this repository through Customize → Plugins → Add plugin → Upload plugin. When connecting the included Benaiah server, choose **Sign in now** and **Use Claude's published identity (CIMD)**, then complete Benaiah's account connection. This is a manual installation while directory review is pending.
+For Cowork, upload a ZIP of this repository through Customize → Plugins → Add plugin → Upload plugin. When connecting the included Benaiah server, choose **Sign in now** and **Use Claude's published identity (CIMD)**, then complete Benaiah's account connection. Version 2.0.0 is also available through the Claude directory. Use this manual route to test the 2.1.0 update until its directory version is published.
 
 ## Boundaries and data handling
 
@@ -50,10 +50,27 @@ This Claude integration cannot initiate telephone calls, completion callbacks, a
 
 Disconnect the server in Claude to remove it from that client. OAuth access tokens expire after one hour; refresh tokens rotate and expire after 30 days. Contact [ask@benaiah.ai](mailto:ask@benaiah.ai) for account or privacy assistance.
 
+## Calling panel
+
+Ask “Open the Telephonist call panel.” In Claude chat hosts supporting MCP Apps, the panel appears inside the conversation. It uses the current ChatGPT calling panel as its reference and the same Benaiah account and Telephonist calling service. Connect once, enter and confirm your caller name once, and reuse it on future drafts. Names and call data are scoped to the linked account; they are not read from Claude memory. Recent calls remain hidden until requested.
+
+Version 2.1.0 adds separate `calling.read` and `calling.write` permissions. Existing configuration grants do not acquire these permissions through refresh; reconnect and review the new consent screen. Preparation saves an expiring draft without reserving credit or dialling. Calling in Claude and AI voice previews remain disabled pending written permission from Anthropic under its Software Directory Policy. The older approved version does not establish calling permission.
+
+Examples:
+
+- “Open the Telephonist call panel.”
+- “Prepare a draft to ask Example Opticians at 020 7946 0001 about Friday afternoon appointments. Do not book anything. Use Alex as the caller name and a three-minute limit.”
+- “Show my recent calls in the Telephonist panel.”
+
 ## Tools
 
 | Tool | Effect |
 | --- | --- |
+| `open_telephonist_call_panel` | Open the interactive calling account and draft panel; never dials |
+| `prepare_temp_call` | Save a bounded UK business call draft; never dials |
+| `get_temp_call` | Read an owned calling-panel draft or result |
+| `cancel_temp_call` | Cancel an owned draft or request an active call stop |
+| `disconnect_telephonist_account` | Revoke calling-panel access, preserving account and existing calls |
 | `connect_telephonist` | Begin an owner-approved connection |
 | `list_telephonists` | List explicitly connected Telephonists |
 | `get_telephonist` | Read policy, configuration version and runtime state |
@@ -68,13 +85,15 @@ Disconnect the server in Claude to remove it from that client. OAuth access toke
 | `get_delegated_task` | Read the delegated task's status and result |
 | `cancel_delegated_task` | Request cancellation of delegated work |
 
+The panel also has app-only actions for refreshing, connecting and remembering the first confirmed caller name. There is no approval/dial tool in the released Claude configuration.
+
 All tools are scoped to the linked account. Read responses are bounded. Task results and teammate content are treated as data, never as permission for additional actions.
 
 ## Validation
 
 Run `claude plugin validate .` to check the package. The remote service has separate tests for OAuth, account isolation, task retries, cancellation and exclusion of calling capabilities. The directory reads the `icon` field; Claude Code 2.1.250 reports it as an unknown field and safely ignores it. Package validation alone does not establish live client acceptance or directory approval.
 
-On 15 September 2026, a fresh fictional drafting task completed through the production Benaiah service. Claude Code and the installed Cowork plugin both retrieved the same saved result from Verity. The founder test used an operator-issued, time-limited developer allowance; the customer plan requirement above still applies. Earlier checks covered authenticated teammate lookup and task cancellation. The plugin was submitted for directory review on 15 September 2026; approval by Anthropic is not claimed.
+On 15 September 2026, a fresh fictional drafting task completed through the production Benaiah service. Claude Code and the installed Cowork plugin both retrieved the same saved result from Verity. The founder test used an operator-issued, time-limited developer allowance; the customer plan requirement above still applies. Earlier checks covered authenticated teammate lookup and task cancellation. Version 2.0.0 was confirmed published in the Claude directory on 3 October 2026. Version 2.1.0 is the separate calling-panel update; its scan and publication status must be checked in the directory. Publication of the management plugin is not permission for AI audio.
 
 ## License
 
